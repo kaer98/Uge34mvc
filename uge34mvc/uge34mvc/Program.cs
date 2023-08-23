@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using uge34mvc.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<uge34mvcContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("uge34mvcContext") ?? throw new InvalidOperationException("Connection string 'uge34mvcContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
